@@ -12,7 +12,7 @@ exports.index = function(req, res, next){
 
 
 exports.show = function(req, res, next){
-    res.send(req.category);
+    res.send(req.type);
 };
 
 exports.create = function(req, res, next){
