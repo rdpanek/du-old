@@ -3,10 +3,9 @@
 /* Controllers */
 
 
-function MyCtrl1() {}
-MyCtrl1.$inject = [];
-
-
-function MyCtrl2() {
+function TypesCtrl($scope, $location, Types) {
+	$scope.types = Types.index();
 }
-MyCtrl2.$inject = [];
+
+function MovementsCtrl() {
+}

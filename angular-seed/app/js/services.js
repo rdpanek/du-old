@@ -2,8 +2,12 @@
 
 /* Services */
 
-
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('myApp.services', []).
-  value('version', '0.1');
+angular.module('duServices', ['ngResource'])
+    .factory('Types', function($resource){
+        return $resource('/api/v1/types/:id', {url:'@id'}, {
+            index: {method:'GET', isArray:true},
+            create: {method:'POST'},
+            update: {method:'PUT'},
+            remove: {method:'DELETE'}
+    });
+});
