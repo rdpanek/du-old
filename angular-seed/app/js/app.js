@@ -6,6 +6,7 @@ var du = angular.module('du', ['duServices']);
 du.config(function($routeProvider) {
     $routeProvider.when('/types', {templateUrl: 'partials/types.html', controller: TypesCtrl});
     $routeProvider.when('/movements', {templateUrl: 'partials/movements.html', controller: MovementsCtrl});
+    $routeProvider.when('/new-type', {templateUrl: 'partials/new-type.html', controller: NewTypeCtrl});
     $routeProvider.otherwise({redirectTo: '/movements'});
   });
 

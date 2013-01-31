@@ -19,3 +19,4 @@ angular.module('duServices', ['ngResource'])
             remove: {method:'DELETE'}
     	});
 	});
+

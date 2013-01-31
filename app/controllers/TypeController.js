@@ -17,6 +17,11 @@ exports.show = function(req, res, next){
 
 exports.create = function(req, res, next){
     var type = new Type();
+
+    if (req.body.color === undefined) {
+        req.body.color = "white";
+    };
+
     type.name = req.body.name;
     type.color = req.body.color;
     type.save(function(err, doc) {
