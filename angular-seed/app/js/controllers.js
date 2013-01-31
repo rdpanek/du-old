@@ -5,6 +5,12 @@
 
 function TypesCtrl($scope, $location, Types) {
 	$scope.types = Types.index();
+	$scope.remove = function(_id) {
+		Types.remove({_id:_id}, function(){
+			$scope.types = Types.index();
+            $location.path('/types');
+        });
+	}
 }
 
 function MovementsCtrl($scope, $location, Movements) {
