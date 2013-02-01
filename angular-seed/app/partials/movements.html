@@ -2,6 +2,7 @@
 
 <ul>
 	<li ng-repeat="movement in movements">
-		{{movement.amount}} {{movement.name}}
+		{{movement.amount}} {{movement.name}} 
+		<a ng-click="remove(movement._id)">x</a> 
 	</li>
 </ul>

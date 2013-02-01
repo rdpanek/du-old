@@ -13,7 +13,7 @@ angular.module('duServices', ['ngResource'])
     	});
 	})
 	.factory('Movements', function($resource){
-		return $resource('/api/v1/movements/:id', {url:'@id'}, {
+		return $resource('/api/v1/movements/:_id', {_id:'@_id'}, {
             index: {method:'GET', isArray:true},
             create: {method:'POST'},
             update: {method:'PUT'},
