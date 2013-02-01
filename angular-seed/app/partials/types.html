@@ -2,6 +2,6 @@ Výpis typů | <a ng-href="/new-type">Přidat typ</a>
 
 <ul>
 	<li ng-repeat="type in types">
-		{{type.name}} <a ng-click="remove(type._id)">x</a>
+		{{type.name}} <a ng-click="remove(type._id)">x</a> <a ng-href="/edit-type/{{type._id}}">e</a>
 	</li>
 </ul>

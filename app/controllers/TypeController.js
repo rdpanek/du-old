@@ -30,6 +30,15 @@ exports.create = function(req, res, next){
     });
 };
 
+exports.update = function(req, res, next){
+  req.type.name = req.body.name;
+  req.type.color = req.body.color;
+  req.type.save(function(err, doc) {
+    if (err) return next(err);
+    res.json(doc);
+  });
+};
+
 exports.destroy = function(req, res, next){
     req.type.remove(function(err, doc) {
         if (err) return next(err);

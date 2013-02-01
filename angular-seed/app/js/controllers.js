@@ -5,8 +5,8 @@
 
 function TypesCtrl($scope, $location, Types) {
 	$scope.types = Types.index();
-	$scope.remove = function(_id) {
-		Types.remove({_id:_id}, function(){
+	$scope.remove = function(id) {
+		Types.remove({_id:id}, function(){
 			$scope.types = Types.index();
             $location.path('/types');
         });
@@ -26,4 +26,16 @@ function NewTypeCtrl($scope, $location, Types){
     $scope.close = function() {
         $location.path('/types');
     }
+}
+
+
+function EditTypeCtrl($scope, $location, Types, $routeParams){
+	$scope.type = Types.show({_id: $routeParams.id});
+	$scope.update = function(){
+		Types.update({_id: $routeParams.id}, $scope.type);
+		$location.path('/types');
+	}
+	$scope.close = function(){
+		$location.path('/types');
+	}
 }
