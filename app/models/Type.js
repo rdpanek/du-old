@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var fields = {
 	name: {type: String, required: true},
-	color: {type: String, required: true}
+	color: {type: String, required: true},
+	default: {type: Boolean}
 };
 
 var Schema = new mongoose.Schema(fields);
