@@ -6,6 +6,19 @@ function MovementsCtrl($scope, $location, Movements) {
 	$scope.movements = Movements.index();
 }
 
+function NewMovementCtrl($scope, $location, Movements, Types) {
+	$scope.movement = {
+		listTypes: Types.index()
+	};
+
+	$scope.create = function() {
+		console.log($scope.movement);
+		Movements.create($scope.movement, function(){
+			//$location.path('/movements');
+		});
+	}
+}
+
 function TypesCtrl($scope, $location, Types) {
 	$scope.types = Types.index();
 	$scope.remove = function(id) {

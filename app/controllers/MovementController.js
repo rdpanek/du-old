@@ -20,6 +20,7 @@ exports.create = function(req, res, next){
     movement.name = req.body.name;
     movement.description = req.body.description;
     movement.amount = req.body.amount;
+    movement.listTypes = req.body.listTypes;
     movement.save(function(err, doc) {
         if (err) return next(err);
         res.json(doc);

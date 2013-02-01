@@ -2,8 +2,9 @@ var mongoose = require('mongoose');
 
 var fields = {
 	name: {type: String, required: true},
-	description: {type: String, required: true},
-	amount: {type: String, required: true}
+	description: {type: String},
+	amount: {type: String, required: true}, 
+    listTypes: {type: Array}
 };
 
 var Schema = new mongoose.Schema(fields);
