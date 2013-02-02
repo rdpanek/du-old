@@ -7,5 +7,7 @@
 		<a ng-href="/edit-movement/{{movement._id}}">e</a> 
 		( <span ng-repeat="type in movement.listTypes">
 			<span ng-show="type.check">{{type.name}},</span> </span> )
+		<span>{{movement.updated}}</span> 
+
 	</li>
 </ul>
