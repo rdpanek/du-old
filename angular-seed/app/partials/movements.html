@@ -4,5 +4,6 @@
 	<li ng-repeat="movement in movements">
 		{{movement.amount}} {{movement.name}} 
 		<a ng-click="remove(movement._id)">x</a> 
+		<a ng-href="/edit-movement/{{movement._id}}">e</a>
 	</li>
 </ul>

@@ -1,0 +1,23 @@
+<form class="well" ng-submit="update()">
+
+  <fieldset>
+    <input type="text" ng-model="movement.amount" class="input-xxlarge" required placeholder="Částka">
+    <input type="text" ng-model="movement.name" required placeholder="Krátký popis">
+    <input type="text" ng-model="movement.description" placeholder="Delší popis">
+  </fieldset>
+
+  <fieldset>
+    <ul>
+    	<li ng-repeat="type in movement.listTypes">
+    		<input type="checkbox" ng-model="type.check"> 
+    		{{type.name}}
+    	</li>
+    </ul>
+  </fieldset>
+
+  <div class="form-actions">
+  		<button type="submit" class="btn btn-success btn-large">Uložit</button>
+  		<button type="button" class="btn" ng-click="close()">Zavřít</button>
+  </div>
+
+</form>

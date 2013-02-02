@@ -27,6 +27,17 @@ exports.create = function(req, res, next){
     });
 };
 
+exports.update = function(req, res, next){
+  req.movement.name = req.body.name;
+  req.movement.description = req.body.description;
+  req.movement.amount = req.body.amount;
+  req.movement.listTypes = req.body.listTypes;
+  req.movement.save(function(err, doc) {
+    if (err) return next(err);
+    res.json(doc);
+  });
+};
+
 exports.destroy = function(req, res, next){
     req.movement.remove(function(err, doc) {
         if (err) return next(err);

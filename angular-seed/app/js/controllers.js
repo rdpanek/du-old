@@ -56,3 +56,15 @@ function EditTypeCtrl($scope, $location, Types, $routeParams){
 		$location.path('/types');
 	}
 }
+
+
+function EditMovementCtrl($scope, $location, Movements, $routeParams){
+	$scope.movement = Movements.show({_id: $routeParams.id});
+	$scope.update = function(){
+		Movements.update({_id: $routeParams.id}, $scope.movement);
+		$location.path('/movements');
+	}
+	$scope.close = function(){
+		$location.path('/movements');
+	}
+}

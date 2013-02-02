@@ -9,6 +9,7 @@ du.config(function($routeProvider) {
     $routeProvider.when('/new-movement', {templateUrl: 'partials/new-movement.html', controller: NewMovementCtrl});
     $routeProvider.when('/new-type', {templateUrl: 'partials/new-type.html', controller: NewTypeCtrl});
     $routeProvider.when('/edit-type/:id', {templateUrl: '/partials/edit-type.html', controller: EditTypeCtrl});
+    $routeProvider.when('/edit-movement/:id', {templateUrl: '/partials/edit-movement.html', controller: EditMovementCtrl});
     $routeProvider.otherwise({redirectTo: '/movements'});
   });
 
