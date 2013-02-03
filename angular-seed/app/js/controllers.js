@@ -4,12 +4,6 @@
 
 function MovementsCtrl($scope, $location, Movements) {
 	$scope.movements = Movements.index();
-	$scope.remove = function(id) {
-		Movements.remove({_id:id}, function(){
-			$scope.movements = Movements.index();
-            $location.path('/moements');
-        });
-	}
 }
 
 function NewMovementCtrl($scope, $location, Movements, Types) {
@@ -72,7 +66,12 @@ function EditTypeCtrl($scope, $location, Types, $routeParams){
 
 function EditMovementCtrl($scope, $location, Movements, $routeParams){
 	$scope.movement = Movements.show({_id: $routeParams.id});
-	
+	$scope.remove = function(id) {
+		Movements.remove({_id:id}, function(){
+			$scope.movements = Movements.index();
+            $location.path('/moements');
+        });
+	}
 	$scope.update = function(){
 		var typeChecked = [],
 			listTypes = $scope.movement.listTypes;
@@ -89,3 +88,4 @@ function EditMovementCtrl($scope, $location, Movements, $routeParams){
 		$location.path('/movements');
 	}
 }
+

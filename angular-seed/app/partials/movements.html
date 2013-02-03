@@ -2,7 +2,7 @@
 	<strong>{{movement.amount}}</strong> {{movement.name}} 
 	<hr>
 	 
-	<a class="btn btn-small" ng-href="/edit-movement/{{movement._id}}">Více</a> 
+	<a class="btn btn-small" ng-href="/view-movement/{{movement._id}}">Více</a> 
 	Obálky: 
 	<span ng-repeat="type in movement.listTypes">
 		<span ng-show="type.check">{{type.name}},</span> </span>
