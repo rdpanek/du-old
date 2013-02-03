@@ -1,18 +1,15 @@
 <form class="well" ng-submit="create()">
 
   <fieldset>
-    <input type="text" ng-model="movement.amount" class="input-xxlarge" required placeholder="Částka">
-    <input type="text" ng-model="movement.name" required placeholder="Krátký popis">
-    <input type="text" ng-model="movement.description" placeholder="Delší popis">
+    <input type="tel" ng-model="movement.amount" class="input-xxlarge" required placeholder="Zadejte částku">
+    <input type="text" ng-model="movement.name" required placeholder="Krátký popis"><br />
+    <textarea rows="3" ng-model="movement.description" placeholder="Delší popis"></textarea>
   </fieldset>
 
   <fieldset>
-    <ul>
-    	<li ng-repeat="type in movement.listTypes">
-    		<input type="checkbox" ng-model="type.check"> 
-    		{{type.name}}
-    	</li>
-    </ul>
+    <div ng-repeat="type in movement.listTypes" class="alert alert-success">
+      <input type="checkbox" ng-model="type.check"> {{type.name}}
+    </div>
   </fieldset>
 
   <div class="form-actions">

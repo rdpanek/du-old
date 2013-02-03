@@ -51,21 +51,16 @@
   <link href="./img/favicon.ico" rel="icon" type="image/x-icon" />
 </head>
 <body>
-  <div class="container-narrow">
-    <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a id="new_title" ng-href="/types">Kategorie</a></li>
-          <li class="active"><a id="new_title" ng-href="/movements">Pohyby</a></li>
-        </ul>
-        <h3 class="muted">Domácí účetnictví</h3>
-      </div>
-      <hr>
+  <div class="container-narrow" style="padding-top:10px;">
+    <a class="btn btn-success" id="new_title" ng-href="/new-movement"><strong>+ Nový</strong></a> 
+    <a class="btn" id="new_title" ng-href="/types">Obálky</a>
+    <a class="btn" id="new_title" ng-href="/movements" ng-click="movement='btn btn-info'">Výpis</a>
+    
+    <hr>
       <div class="row-fluid marketing" ng-view></div>
-
       <hr>
-
       <div class="footer">
-        <span>{ DeveloperHub 2013</span>
+        <span>{ DeveloperHub 2013 | Domácí účetnictví</span>
       </div>
 
     </div> <!-- /container -->

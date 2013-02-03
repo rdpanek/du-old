@@ -1,29 +1,25 @@
 <form class="well" ng-submit="update()">
 
   <fieldset>
-    <input type="text" ng-model="movement.amount" class="input-xxlarge" required placeholder="Částka">
-    <input type="text" ng-model="movement.name" required placeholder="Krátký popis">
-    <input type="text" ng-model="movement.description" placeholder="Delší popis">
+    <input type="tel" ng-model="movement.amount" class="input-xxlarge" required placeholder="Částka">
+    <input type="text" ng-model="movement.name" required placeholder="Krátký popis"><br />
+    <textarea rows="3" ng-model="movement.description" placeholder="Delší popis"></textarea>
   </fieldset>
 
   <fieldset>
     Zařazeno v obálkách
-    <ul>
-      <li ng-repeat="type in movement.listTypes | filter:{check: 'true'}">
+    <div ng-repeat="type in movement.listTypes | filter:{check: 'true'}" class="alert alert-success">
         <input type="checkbox" ng-model="type.check"> 
         {{type.name}}
-      </li>
-    </ul>
+    </div>  
   </fieldset>
 
   <fieldset>
-    Zařadit do obálek
-    <ul>
-      <li ng-repeat="type in movement.listTypes | filter:{check: 'false'}">
+    Nezařazeno v obálkách
+    <div ng-repeat="type in movement.listTypes | filter:{check: 'false'}" class="alert alert-info">
         <input type="checkbox" ng-model="type.check"> 
         {{type.name}}
-      </li>
-    </ul>
+    </div>  
   </fieldset>
 
   <div class="form-actions">

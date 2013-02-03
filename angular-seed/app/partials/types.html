@@ -1,11 +1,13 @@
-Výpis typů | <a ng-href="/new-type">Přidat typ</a>
-
-<ul>
-	<li ng-repeat="type in types">
-		{{type.name}} 
-		<span ng-hide="type.default">
-			<a ng-click="remove(type._id)">x</a> 
-			<a ng-href="/edit-type/{{type._id}}">e</a>
-		</span>
-	</li>
-</ul>
+<a ng-href="/new-type" class="btn btn-success">Vytvořit novou obálku</a>
+<br />
+<br />
+<br />
+<div class="alert alert-info" ng-repeat="type in types">
+	<strong>{{type.name}}</strong>
+	<hr ng-hide="type.default">
+	<span ng-hide="type.default">
+		<a class="btn" ng-href="/edit-type/{{type._id}}">upravit</a>
+		<a class="btn btn-danger" ng-click="remove(type._id)">smazat obálku</a> 
+	</span>
+	</div>
+</div>

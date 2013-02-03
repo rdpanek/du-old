@@ -1,13 +1,9 @@
-<p>Výpis pohybů | <a ng-href="/new-movement"> + </a></p>
-
-<ul>
-	<li ng-repeat="movement in movements">
-		{{movement.amount}} {{movement.name}} 
-		<a ng-click="remove(movement._id)">x</a> 
-		<a ng-href="/edit-movement/{{movement._id}}">e</a> 
-		( <span ng-repeat="type in movement.listTypes">
-			<span ng-show="type.check">{{type.name}},</span> </span> )
-		<span>{{movement.updated}}</span> 
-
-	</li>
-</ul>
+<div class="alert alert-success" ng-repeat="movement in movements" ng-href="/edit-movement/{{movement._id}}">
+	<strong>{{movement.amount}}</strong> {{movement.name}} 
+	<hr>
+	 
+	<a class="btn btn-small" ng-href="/edit-movement/{{movement._id}}">Více</a> 
+	Obálky: 
+	<span ng-repeat="type in movement.listTypes">
+		<span ng-show="type.check">{{type.name}},</span> </span>
+</div>
