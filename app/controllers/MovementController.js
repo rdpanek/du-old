@@ -1,4 +1,6 @@
-var Movement = require(process.cwd() + '/app/models/Movement');
+var Movement = require(process.cwd() + '/app/models/Movement'),
+    Type = require(process.cwd() + '/app/models/Type'),
+    cleanArray = require(process.cwd() + '/lib/filters/cleanArray');
 
 exports.index = function(req, res, next){
     if (!Movement.inSchema(req.du.fields)) {
@@ -12,7 +14,20 @@ exports.index = function(req, res, next){
 
 
 exports.show = function(req, res, next){
-    res.send(req.movement);
+    Type.find({}, function(err, docs){
+      var types = docs.slice(),
+          listTypes = req.movement.listTypes;
+      for (var i = 0; i < docs.length; i++) {
+        for (var y = 0; y < listTypes.length; y++) {
+          if( listTypes[y]._id == docs[i]._id){
+            delete types[i];
+          }
+        }
+      }
+      
+      req.movement.listTypes = listTypes.concat(cleanArray(types));
+      res.send(req.movement);
+    });
 };
 
 exports.create = function(req, res, next){

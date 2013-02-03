@@ -18,10 +18,22 @@ function NewMovementCtrl($scope, $location, Movements, Types) {
 	};
 
 	$scope.create = function() {
+
+		var typeChecked = [],
+			listTypes = $scope.movement.listTypes;
+		for (var i = 0; i < listTypes.length ; i++) {
+			if( listTypes[i].check === true){
+				typeChecked.push( listTypes[i] );
+			}
+		}
+		$scope.movement.listTypes = typeChecked;
 		Movements.create($scope.movement, function(){
 			$location.path('/movements');
 		});
 	}
+	$scope.close = function() {
+        $location.path('/movements');
+    }
 }
 
 function TypesCtrl($scope, $location, Types) {
@@ -60,7 +72,17 @@ function EditTypeCtrl($scope, $location, Types, $routeParams){
 
 function EditMovementCtrl($scope, $location, Movements, $routeParams){
 	$scope.movement = Movements.show({_id: $routeParams.id});
+	
 	$scope.update = function(){
+
+		var typeChecked = [],
+			listTypes = $scope.movement.listTypes;
+		for (var i = 0; i < listTypes.length ; i++) {
+			if( listTypes[i].check === true){
+				typeChecked.push( listTypes[i] );
+			}
+		}
+		$scope.movement.listTypes = typeChecked;
 		Movements.update({_id: $routeParams.id}, $scope.movement);
 		$location.path('/movements');
 	}

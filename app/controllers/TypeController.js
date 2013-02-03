@@ -24,6 +24,7 @@ exports.create = function(req, res, next){
 
     type.name = req.body.name;
     type.color = req.body.color;
+    type.check = false;
     type.save(function(err, doc) {
         if (err) return next(err);
         res.json(doc);

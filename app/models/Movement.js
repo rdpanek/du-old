@@ -10,7 +10,7 @@ var fields = {
 
 var Schema = new mongoose.Schema(fields);
 
-Schema.statics.findOneByUrl = function(_id, cb){
+Schema.statics.findOneByUrl = function(_id, cb) {
 	Model.findOne({_id: _id}, cb);
 };
 
