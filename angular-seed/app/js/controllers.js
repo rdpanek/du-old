@@ -74,7 +74,6 @@ function EditMovementCtrl($scope, $location, Movements, $routeParams){
 	$scope.movement = Movements.show({_id: $routeParams.id});
 	
 	$scope.update = function(){
-
 		var typeChecked = [],
 			listTypes = $scope.movement.listTypes;
 		for (var i = 0; i < listTypes.length ; i++) {

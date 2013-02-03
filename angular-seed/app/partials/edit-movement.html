@@ -7,8 +7,19 @@
   </fieldset>
 
   <fieldset>
+    Zařazeno v obálkách
     <ul>
-      <li ng-repeat="type in movement.listTypes">
+      <li ng-repeat="type in movement.listTypes | filter:{check: 'true'}">
+        <input type="checkbox" ng-model="type.check"> 
+        {{type.name}}
+      </li>
+    </ul>
+  </fieldset>
+
+  <fieldset>
+    Zařadit do obálek
+    <ul>
+      <li ng-repeat="type in movement.listTypes | filter:{check: 'false'}">
         <input type="checkbox" ng-model="type.check"> 
         {{type.name}}
       </li>
