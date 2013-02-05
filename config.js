@@ -6,6 +6,7 @@ exports.configure = function(app) {
 		app.use(express.bodyParser());
 		app.use(express.methodOverride());
 		app.use(express.static(process.cwd() + '/angular-seed/app'));
+		app.use(express.static(process.cwd() + '/angular-seed/test'));
 		app.use(require('./app/middleware/fields')());
 		app.use(require('./app/middleware/error')());
 		app.use(require('./app/middleware/http406')());

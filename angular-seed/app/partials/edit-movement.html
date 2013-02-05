@@ -1,9 +1,9 @@
 <form class="well" ng-submit="update()">
 
   <fieldset>
-    <input type="tel" ng-model="movement.amount" class="input-xxlarge" required placeholder="Částka">
-    <input type="text" ng-model="movement.name" required placeholder="Krátký popis"><br />
-    <textarea rows="3" ng-model="movement.description" placeholder="Delší popis"></textarea>
+    <input type="tel" ng-model="movement.amount" class="input-xxlarge" id="amount" required placeholder="Částka">
+    <input type="text" ng-model="movement.name" id="short_description" required placeholder="Krátký popis"><br />
+    <textarea rows="3" ng-model="movement.description" id="long_description" placeholder="Delší popis"></textarea>
   </fieldset>
 
   <fieldset>
@@ -23,7 +23,7 @@
   </fieldset>
 
   <div class="form-actions">
-      <button type="submit" class="btn btn-success btn-large">Uložit</button>
+      <button type="submit" class="btn btn-success btn-large" id="save">Uložit</button>
       <button type="button" class="btn" ng-click="close()">Zavřít</button>
   </div>
 

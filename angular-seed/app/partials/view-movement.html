@@ -1,15 +1,18 @@
-<p class="lead"><strong>{{movement.amount}}</strong> {{movement.name}}</p>
+<p class="lead">
+  <span id="amount"><strong>{{movement.amount}}</strong></span> 
+  <span id="short_description">{{movement.name}}</span>
+</p>
 <blockquote>
-  <p>{{movement.description}}</p>
+  <span id="long_description">{{movement.description}}</span>
 </blockquote>
 <fieldset>
-    <div ng-repeat="type in movement.listTypes | filter:{check: 'true'}" class="alert alert-success">
+    <div ng-repeat="type in movement.listTypes | filter:{check: 'true'}" class="alert alert-success type">
         {{type.name}}
     </div>  
   </fieldset>
 
   <div class="form-actions">
-      <button type="button" class="btn" ng-click="close()">Zavřít</button>
-      <a class="btn" ng-href="/edit-movement/{{movement._id}}">Editovat</a> 
-      <button type="button" class="btn btn-danger" ng-click="remove(movement._id)">Smazat</button>
+      <button type="button" class="btn close" ng-click="close()">Zavřít</button>
+      <a class="btn edit" ng-href="/edit-movement/{{movement._id}}">Editovat</a> 
+      <button type="button" class="btn btn-danger" id="remove" ng-click="remove(movement._id)">Smazat</button>
   </div>

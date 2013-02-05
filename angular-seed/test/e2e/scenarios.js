@@ -1,45 +1,98 @@
 'use strict';
 
-/* http://docs.angularjs.org/guide/dev_guide.e2e-testing */
+var movement = {
+  amount: '1234', 
+  short_description: 'baterie', 
+  long_description: 'do mobilniho telefonu' 
+};
 
-describe('my app', function() {
+describe('Du', function () {
+  describe('Kontrola hlavni stranky', function () {
 
-  beforeEach(function() {
-    browser().navigateTo('../../app/index.html');
+    beforeEach(function (done) {
+      browser().navigateTo('../../index.html');
+    });
+
+    it('Obsahuje tlacitko +Novy', function (done) {
+      expect(element('#new_movement').text()).toBe('+ Nový');
+    });
+
+    it('Obsahuje tlacitko Obalky', function(){
+       expect(element('#show_types').text()).toBe('Obálky');
+    });
+
+    it('Obsahuje tlacitko Vypis', function(){
+       expect(element('#show_movements').text()).toBe('Výpis');
+    });
   });
-
-
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    expect(browser().location().url()).toBe("/view1");
-  });
-
-
-  describe('view1', function() {
-
-    beforeEach(function() {
-      browser().navigateTo('#/view1');
+  describe('Pohyby', function () {
+    describe('Přidat nový pohyb', function () {
+      it(' s nepovinym popisem', function (done) {
+        element('#new_movement').click();
+        input('movement.amount').enter(movement.amount);
+        input('movement.name').enter(movement.short_description);
+        input('movement.description').enter(movement.long_description);
+        
+      });
+      it('vždy by měly byt dostupny minimalne 3 typy (vydaje, prijmy, ostatni)', function(){
+        expect(repeater('.types').count()).toBeGreaterThan(2);
+        element('#0-type').click();
+        element('#1-type').click();
+        element('#2-type').click(); 
+      });
+      it('uložení nového pohybu', function(){
+         element('#save').click();
+      });
     });
 
+    describe('Kontrola výpisu pohybů', function () {
+      
+      describe('Výpis pohybů', function () {
+        it('by měl obsahovat více jak 0 pohybů', function(){
+           expect(element('.alert-success').count()).toBeGreaterThan(0);
+        });
+      });
 
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element('[ng-view] p:first').text()).
-        toMatch(/partial for view 1/);
+      describe('Kontrola detailu vytvořeného pohybu', function () {
+        it('vytvořený pohyb je ve výpisu', function (done) {
+          element("span:contains(" + movement.amount + ") ~ a").click();
+        });
+        it('obsahuje částku', function (done) {
+          expect(element('#amount').text()).toBe(movement.amount);
+        });
+        it('obsahuje zkrácený popis', function(){
+           expect(element('#short_description').text()).toBe(movement.short_description);
+        });
+        it('obsahuje dlouhý popis', function(){
+           expect(element('#long_description').text()).toBe(movement.long_description);
+        });
+        it('obsahuje 3 typy', function(){
+           expect(repeater('.type').count()).toBeGreaterThan(2);
+        });
+        it('z detailu pohybu se lze vrátit zpět na seznam pohybů', function(){
+           element('.close').click();
+           expect(element('.alert-success').count()).toBeGreaterThan(0);
+        });
+      });
     });
+    describe('Vybraný pohyb lze editovat', function () {
+      
+        beforeEach(function (done) {
+          browser().navigateTo('../../index.html');
+        });
 
-  });
-
-
-  describe('view2', function() {
-
-    beforeEach(function() {
-      browser().navigateTo('#/view2');
-    });
-
-
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element('[ng-view] p:first').text()).
-        toMatch(/partial for view 2/);
-    });
-
+        it('editace pohybu - popis nebude vyplnen', function (done) {
+          element("span:contains(" + movement.amount + ") ~ a").click();
+          element('.edit').click();
+          input('movement.amount').enter(movement.amount + 5);
+          input('movement.name').enter(movement.short_description + " updated");
+          input('movement.description').enter();
+          element('#save').click();
+        });
+        it('pohyb lze smazat', function(){
+           element("span:contains(" + movement.amount + "5) ~ a").click();
+           element('#remove').click();
+        });
+      });
   });
 });
