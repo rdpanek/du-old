@@ -6,6 +6,11 @@ var movement = {
   long_description: 'do mobilniho telefonu' 
 };
 
+var type = {
+  name: 'typ1234', 
+  color: 'white'
+};
+
 describe('Du', function () {
   describe('Kontrola hlavni stranky', function () {
 
@@ -25,7 +30,9 @@ describe('Du', function () {
        expect(element('#show_movements').text()).toBe('Výpis');
     });
   });
+
   describe('Pohyby', function () {
+
     describe('Přidat nový pohyb', function () {
       it(' s nepovinym popisem', function (done) {
         element('#new_movement').click();
@@ -75,6 +82,7 @@ describe('Du', function () {
         });
       });
     });
+
     describe('Vybraný pohyb lze editovat', function () {
       
         beforeEach(function (done) {
@@ -94,5 +102,43 @@ describe('Du', function () {
            element('#remove').click();
         });
       });
+  });
+  
+  describe('Typy', function () {
+
+    beforeEach(function (done) {
+      browser().navigateTo('../../index.html');
+    });
+
+    it('existují vždy minimálně 3 typy', function (done) {
+      element('#show_types').click();
+      expect(repeater('.type').count()).toBeGreaterThan(2);
+    });
+
+    describe('lze vytvořit nový typ', function () {
+
+      it('uložení nového typu', function (done) {
+        element('#show_types').click();
+        element('#new_type').click();
+        input('type.name').enter(type.name);
+        input('type.color').enter(type.color);
+        element('#save').click();
+      });
+      it('ověření, že nový typ byl vytvořen', function(){ 
+        element('#show_types').click();
+        element("span:contains(" + type.name + ") ~ span a:first").click();
+      });
+      it('editace uloženého typu bez udání barvy', function(){
+          element('#show_types').click();
+          element("span:contains(" + type.name + ") ~ span a:first").click();
+          input('type.name').enter(type.name);
+          input('type.color').enter();
+          element('#save').click();
+      });
+      it('vytovřený typ lze smazat', function(){
+         element('#show_types').click();
+         element("span:contains(" + type.name + ") ~ span a:eq(1)").click();
+      });
+    });
   });
 });
