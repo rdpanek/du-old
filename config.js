@@ -10,6 +10,7 @@ exports.configure = function(app) {
 		app.use(require('./app/middleware/fields')());
 		app.use(require('./app/middleware/error')());
 		app.use(require('./app/middleware/http406')());
+		app.use(require('./app/middleware/http415')());
 		app.use(app.router);
 	});
 	app.configure('development', function(){
