@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var fields = {
 	name: {type: String, required: true},
-	color: {type: String, required: true},
+	color: {type: String},
     check: {type: Boolean, required:true},
 	default: {type: Boolean}
 };

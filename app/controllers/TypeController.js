@@ -1,8 +1,11 @@
 var Type = require(process.cwd() + '/app/models/Type');
+var error = require(process.cwd() + '/lib/error');
+var util = require(process.cwd() + '/lib/util');
+
 
 exports.index = function(req, res, next){
     if (!Type.inSchema(req.du.fields)) {
-        return next(400);
+        return next(new error.NotInFields());
     }
     Type.find({}, req.du.fields, function(err, docs) {
         if (err) return next(err);
@@ -27,6 +30,9 @@ exports.create = function(req, res, next){
     type.check = false;
     type.save(function(err, doc) {
         if (err) return next(err);
+        var location = util.fullUrl(req.path + '/' + doc._id, req);
+        res.setHeader('location', location);
+        res.send(201);
         res.json(doc);
     });
 };
@@ -43,6 +49,6 @@ exports.update = function(req, res, next){
 exports.destroy = function(req, res, next){
     req.type.remove(function(err, doc) {
         if (err) return next(err);
-        res.json(doc);
+        res.send(204);
     });
 };
