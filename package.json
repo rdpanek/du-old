@@ -10,7 +10,9 @@
 		"express": "3.0.x",
 		"express-resource": "1.0.x",
 		"mongoose": "3.3.x",
-		"async": "0.1.x"
+		"async": "0.1.x",
+		"passport": ">= 0.0.0",
+    	"passport-google-oauth": ">= 0.0.0"
 	},
 	"devDependencies": {
 		"mocha": "1.6.x",

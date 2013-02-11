@@ -3,7 +3,7 @@
 var du = angular.module('du', ['duServices']); 
 
 // Declare app level module which depends on filters, and services
-du.config(function($routeProvider) {
+du.config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/types', {templateUrl: 'partials/types.html', controller: TypesCtrl});
     $routeProvider.when('/movements', {templateUrl: 'partials/movements.html', controller: MovementsCtrl});
     $routeProvider.when('/new-movement', {templateUrl: 'partials/new-movement.html', controller: NewMovementCtrl});
@@ -13,8 +13,3 @@ du.config(function($routeProvider) {
     $routeProvider.when('/edit-movement/:id', {templateUrl: '/partials/edit-movement.html', controller: EditMovementCtrl});
     $routeProvider.otherwise({redirectTo: '/movements'});
   });
-
-    
-du.config(function($locationProvider) {
-  $locationProvider.html5Mode(true)
-});

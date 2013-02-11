@@ -1,4 +1,4 @@
-<a ng-href="/new-type" id="new_type" class="btn btn-success">Vytvořit novou obálku</a>
+<a ng-href="/#/new-type" id="new_type" class="btn btn-success">Vytvořit novou obálku</a>
 <br />
 <br />
 <br />
@@ -6,7 +6,7 @@
 	<span><strong>{{type.name}}</strong></span>
 	<hr ng-hide="type.default">
 	<span ng-hide="type.default">
-		<a class="btn" id="edit" ng-href="/edit-type/{{type._id}}">upravit</a>
+		<a class="btn" id="edit" ng-href="/#/edit-type/{{type._id}}">upravit</a>
 		<a class="btn btn-danger" id="remove" ng-click="remove(type._id)">smazat obálku</a> 
 	</span>
 	</div>
