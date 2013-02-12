@@ -4,6 +4,7 @@ var du = angular.module('du', ['duServices']);
 
 // Declare app level module which depends on filters, and services
 du.config(function($routeProvider, $locationProvider) {
+	$routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: LoginCtrl});
     $routeProvider.when('/types', {templateUrl: 'partials/types.html', controller: TypesCtrl});
     $routeProvider.when('/movements', {templateUrl: 'partials/movements.html', controller: MovementsCtrl});
     $routeProvider.when('/new-movement', {templateUrl: 'partials/new-movement.html', controller: NewMovementCtrl});

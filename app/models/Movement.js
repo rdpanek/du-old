@@ -5,7 +5,8 @@ var fields = {
 	description: {type: String},
 	amount: {type: String, required: true}, 
     listTypes: {type: Array},
-    updated: { type: Date, default: Date.now }
+    updated: { type: Date, default: Date.now },
+    email: { type: String, required: true}
 };
 
 var Schema = new mongoose.Schema(fields);

@@ -38,7 +38,7 @@ exports.configure = function(app) {
 		app.use(express.session({ secret: 'keyboard cat' }));
 		app.use(passport.initialize());
   		app.use(passport.session());
-		app.use(express.static(process.cwd() + '/angular-seed/app'));
+  		app.use(express.static(process.cwd() + '/angular-seed/app'));
 		app.use(express.static(process.cwd() + '/angular-seed/test'));
 		app.use(require('./app/middleware/fields')());
 		app.use(require('./app/middleware/http406')());
@@ -46,7 +46,7 @@ exports.configure = function(app) {
 		app.use(app.router);
 		app.use(require('./app/middleware/error')());
 	});
-	app.configure('development', function(){
+	app.configure('development', function(req, res){
 		app.set('db uri', 'mongodb://localhost/du');
 	});
 	app.configure('production', function(){
@@ -74,8 +74,11 @@ exports.configure = function(app) {
 	  req.logout();
 	  res.redirect('/');
 	});
-}
 
+	app.get('/login', function(req, res){
+		res.send('<a href="/auth/google">Google</a>');
+	});
+}
 
 exports.connect = function(app) {
     mongoose.connect(app.get('db uri'), function(err) {

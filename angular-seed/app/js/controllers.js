@@ -2,6 +2,10 @@
 
 /* Controllers */
 
+function LoginCtrl($scope, $location){
+	
+}
+
 function MovementsCtrl($scope, $location, Movements) {
 	$scope.movements = Movements.index();
 }
