@@ -5,8 +5,10 @@ var express = require('express')
 
 // API Access link for creating client ID and secret:
 // https://code.google.com/apis/console/
-var GOOGLE_CLIENT_ID = "521642543706.apps.googleusercontent.com";
-var GOOGLE_CLIENT_SECRET = "Wfnxh4tWf2aTCxPyOeyqI5sx";
+var GOOGLE_CLIENT_ID_PRODUCTION = "521642543706.apps.googleusercontent.com";
+var GOOGLE_CLIENT_SECRET_PRODUCTION = "Wfnxh4tWf2aTCxPyOeyqI5sx";
+var GOOGLE_CLIENT_ID_DEVELOPMENT = "521642543706-vs4545bg56ulo8m809jtccic49t9o3s3.apps.googleusercontent.com";
+var GOOGLE_CLIENT_SECRET_DEVELOPMENT = "91FZFhBT2XarzB0HoTZtTaav";
 
 // Passport session setup.
 passport.serializeUser(function(user, done) {
@@ -16,19 +18,6 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
-
-// Use the GoogleStrategy within Passport.
-passport.use(new GoogleStrategy({
-    clientID: GOOGLE_CLIENT_ID,
-    clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://panek-du.herokuapp.com/auth/google/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      return done(null, profile);
-    });
-  }
-));
 
 exports.configure = function(app) {
 	app.configure(function(){
@@ -48,9 +37,33 @@ exports.configure = function(app) {
 	});
 	app.configure('development', function(req, res){
 		app.set('db uri', 'mongodb://localhost/du');
+
+		passport.use(new GoogleStrategy({
+		    clientID: GOOGLE_CLIENT_ID_DEVELOPMENT,
+		    clientSecret: GOOGLE_CLIENT_SECRET_DEVELOPMENT,
+		    callbackURL: "http://localhost:5000/auth/google/callback"
+		  },
+		  function(accessToken, refreshToken, profile, done) {
+		    process.nextTick(function () {
+		      return done(null, profile);
+		    });
+		  }
+		));
 	});
 	app.configure('production', function(){
         app.set('db uri', 'mongodb://panekdu:panekdu@linus.mongohq.com:10084/app11565455');
+
+        passport.use(new GoogleStrategy({
+		    clientID: GOOGLE_CLIENT_ID_PRODUCTION,
+		    clientSecret: GOOGLE_CLIENT_SECRET_PRODUCTION,
+		    callbackURL: "http://panek-du.herokuapp.com/auth/google/callback"
+		  },
+		  function(accessToken, refreshToken, profile, done) {
+		    process.nextTick(function () {
+		      return done(null, profile);
+		    });
+		  }
+		  ));
     });
     app.configure('test', function(){
 		app.set('db uri', 'mongodb://localhost/dutest');
