@@ -1,8 +1,0 @@
-<div class="alert alert-success" ng-repeat="movement in movements" id="{{$index}}-movement">
-	<span><strong>{{movement.amount}}</strong></span> {{movement.name}} 
-	<hr>
-	<a class="btn btn-small" ng-href="/#/view-movement/{{movement._id}}">Více</a> 
-	Obálky: 
-	<span ng-repeat="type in movement.listTypes">
-		<span ng-show="type.check">{{type.name}},</span> </span>
-</div>

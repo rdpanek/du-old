@@ -1,5 +1,0 @@
---require ./test/mocha.js
---require should
---reporter spec
---ui bdd
---recursive
