@@ -3,6 +3,8 @@ express = require 'express'
 http = require 'http'
 path = require 'path'
 routes = require './routes'
+mongoose = require 'mongoose'
+TimeManagerController = require './features/timemanager/timemanagercontroller'
 
 run = ->
   app = express()
@@ -12,6 +14,7 @@ run = ->
     app.set 'title', 'github.com/steida/este'
     app.set 'views', __dirname + '/views'
     app.set 'view engine', 'jade'
+    app.set 'db uri', 'mongodb://localhost/duNew'
     app.use express.compress()
     app.use express.favicon()
 
@@ -47,10 +50,16 @@ run = ->
           title: '500: Internal Server Error'
           error: error
 
-  app.get '/', routes.index
+  mongoose.connect app.get('db uri'), (err) ->
+    console.log "Mongo: " + err if err
 
   http.createServer(app).listen config.server.port, ->
     console.log "Express server listening on port #{config.server.port}"
+
+  app.get '/', routes.index
+
+  app.post '/timemanager', TimeManagerController.create
+
 
 if config.env.development
   run() if require('piping')()
