@@ -1,0 +1,41 @@
+{namespace du.timemanager.expense.templates autoescape="contextual"}
+
+/**
+ * @param timers
+ */
+{template .element}
+  <form class="new-envelope">
+    <input name="date" id="date" autofocus placeholder="
+          {msg desc="Date time manager time input placeholder text."}
+            Datum.
+          {/msg}">
+    <br />
+    <input name="time" autofocus placeholder="
+      {msg desc="New time manager time input placeholder text."}
+        Zadejte celkový čas.
+      {/msg}">
+    <br />
+    <textarea id="descActivity" name="descActivity" placeholder="
+    {msg desc="Activity description."}
+      Zadejte popis aktivity.
+    {/msg}
+    "></textarea>
+    </br>
+    <textarea id="tags" name="tags" placeholder="
+    {msg desc="Tags describing the activity"}
+      Tagy popisující aktivitu.
+    {/msg}
+    "></textarea>
+    </br>
+    <button>
+      {msg desc="Save time manager submit button text."}
+        Uložit
+      {/msg}
+    </button>
+  </form>
+  <ul>
+    {foreach $timer in $timers}
+      <li>a</li>
+    {/foreach}
+  </ul>
+{/template}
