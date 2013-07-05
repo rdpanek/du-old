@@ -1,0 +1,30 @@
+{namespace du.timemanager.templates autoescape="contextual"}
+
+/**
+ * @param timers
+ */
+{template .element}
+  <form class="new-envelope">
+    <input name="time" autofocus placeholder="
+      {msg desc="New time manager time input placeholder text."}
+        Zadejte čas.
+      {/msg}">
+    <br />
+    <textarea id="descActivity" name="descActivity" placeholder="
+    {msg desc="Activity description."}
+      Zadejte popis aktivity.
+    {/msg}
+    "></textarea>
+    </br>
+    <button>
+      {msg desc="Save time manager submit button text."}
+        Uložit
+      {/msg}
+    </button>
+  </form>
+  <ul>
+    {foreach $timer in $timers}
+      <li>{$timer['time']}</li>
+    {/foreach}
+  </ul>
+{/template}

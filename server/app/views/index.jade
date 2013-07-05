@@ -1,0 +1,14 @@
+doctype 5
+head
+  meta(charset="utf-8")
+  title= title
+  include includes/assets
+
+body
+  p.
+    time manager
+  #time_manager
+  script.
+    app.start({"someDataFromServer": 123});
+  if env == 'development'
+    script(src="http://localhost:35729/livereload.js")
