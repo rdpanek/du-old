@@ -82,13 +82,8 @@ class du.timemanager.expense.Component extends este.ui.Component
     tagsProvider = [
       "SocialBakers"
       "QA"
-      "Testování"
-    ]
-    activityProvider = [
+      "Testování",
       "testReview"
-      "SM"
-      "praha"
     ]
     autocompleteTags = goog.ui.ac.createSimpleAutoComplete tagsProvider, @getElement().querySelector('#tags'), true, true
-    autocompleteActivity = goog.ui.ac.createSimpleAutoComplete activityProvider, @getElement().querySelector('#descActivity'), true, true
     return

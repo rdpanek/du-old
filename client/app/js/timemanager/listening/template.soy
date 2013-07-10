@@ -1,0 +1,13 @@
+{namespace du.timemanager.listening.templates autoescape="contextual"}
+
+/**
+ * @param items
+ */
+{template .element}
+  Výpis záznamů
+  <ul>
+    {foreach $item in $items}
+      <li>{$item.timeTotal} - {$item.dateUnix}- a: {$item.descActivity} - t: {$item.tags}</li>
+    {/foreach}
+  </ul>
+{/template}

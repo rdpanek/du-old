@@ -9,15 +9,19 @@ exports.create = (req, res) ->
     dateUnix = moment(f).format 'X'
   dateUnix ?= moment().format 'X'
 
+  tags = req.body.tags
+  tags = tags.replace(/,$/, "").replace(/, $/, "")
+  tags = tags.split(",")
+
   timeRecord = new TimeManager()
   timeRecord.dateUnix = dateUnix
   timeRecord.timeTotal = req.body.time
-  timeRecord.tags = req.body.tags
+  timeRecord.tags = tags
   timeRecord.descActivity = req.body.descActivity
   timeRecord.userHash = 12345
   timeRecord.save (err, timeRecord)->
     console.log err
-    #console.log timeRecord
+    console.log timeRecord
 
   res.json req.body
   res.send 201

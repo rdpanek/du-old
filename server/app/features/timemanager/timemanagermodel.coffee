@@ -11,7 +11,7 @@ fields =
     type: Array
     required: true
   descActivity:
-    type: Array
+    type: String
     required: true
   userHash:
     type: String
