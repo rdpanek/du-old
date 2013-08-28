@@ -1,29 +1,22 @@
 ###*
   @fileoverview app.envelopes.Component
 ###
-goog.provide 'du.timemanager.listening.Component'
+goog.provide 'du.timemanager.tags.Component'
 
-goog.require 'du.timemanager.Model'
-goog.require 'du.timemanager.listening.templates'
+goog.require 'du.timemanager.tags.Model'
+goog.require 'du.timemanager.tags.templates'
 goog.require 'este.ui.Component'
 goog.require 'este.storage.Rest'
 goog.require 'este.dom.merge'
 
-class du.timemanager.listening.Component extends este.ui.Component
+class du.timemanager.tags.Component extends este.ui.Component
 
   ###*
-    @param {du.timemanager.Collection} timers
     @constructor
     @extends {este.ui.Component}
   ###
-  constructor: (@timers) ->
+  constructor: () ->
     super()
-
-  ###*
-    @type {du.timemanager.Collection}
-    @protected
-  ###
-  timers: null
 
   ###*
     @override

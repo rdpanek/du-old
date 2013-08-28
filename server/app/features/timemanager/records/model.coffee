@@ -7,9 +7,6 @@ fields =
   timeTotal:
     type: Number
     required: true
-  tags:
-    type: Array
-    required: true
   descActivity:
     type: String
     required: true
@@ -20,4 +17,4 @@ fields =
 
 Schema = new mongoose.Schema fields
 
-Model = module.exports = mongoose.model 'TimeManager', Schema
+Model = module.exports = mongoose.model 'TimeManagerRecords', Schema

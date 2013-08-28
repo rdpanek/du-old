@@ -4,7 +4,8 @@ http = require 'http'
 path = require 'path'
 routes = require './routes'
 mongoose = require 'mongoose'
-TimeManagerController = require './features/timemanager/timemanagercontroller'
+TimeManagerRecords = require './features/timemanager/records/controller'
+TimeManagerTags = require './features/timemanager/tags/controller'
 
 run = ->
   app = express()
@@ -59,8 +60,9 @@ run = ->
 
   app.get '/', routes.index
 
-  app.post '/timemanager', TimeManagerController.create
-  app.get '/timemanager', TimeManagerController.index
+  app.post '/timeManagerRecords', TimeManagerRecords.create
+  app.get '/timeManagerRecords', TimeManagerRecords.index
+  app.get '/timeManagerTags', TimeManagerTags.index
 
 
 if config.env.development

@@ -17,7 +17,7 @@ class du.timemanager.Model extends este.Model
   ###*
     @override
   ###
-  url: '/timemanager'
+  url: '/timeManagerRecords'
 
   ###*
     @override

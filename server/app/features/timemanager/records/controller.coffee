@@ -1,4 +1,5 @@
-TimeManager = require './timemanagermodel'
+TimeManagerRecords = require './model'
+TimeManagerTags = require '../tags/model'
 moment = require 'moment'
 moment.lang 'cs'
 
@@ -9,26 +10,31 @@ exports.create = (req, res) ->
     dateUnix = moment(f).format 'X'
   dateUnix ?= moment().format 'X'
 
-  tags = req.body.tags
-  tags = tags.replace(/,$/, "").replace(/, $/, "")
-  tags = tags.split(",")
-
-  timeRecord = new TimeManager()
+  timeRecord = new TimeManagerRecords()
   timeRecord.dateUnix = dateUnix
   timeRecord.timeTotal = req.body.time
-  timeRecord.tags = tags
   timeRecord.descActivity = req.body.descActivity
   timeRecord.userHash = 12345
-  timeRecord.save (err, timeRecord)->
-    console.log err
-    console.log timeRecord
+  timeRecord.save (err, timeRecord) ->
+    res.send 404 if err
+
+    #save tags
+    tags = req.body.tags
+    tags = tags.replace(/,$/, "").replace(/, $/, "")
+    tags = tags.split(",")
+    for tag in tags
+      tagRecord = new TimeManagerTags()
+      tagRecord.tagName = tag
+      tagRecord.userHash = 12345
+      tagRecord.timeRecord = timeRecord._id
+      tagRecord.save (err, tag) ->
 
   res.json req.body
   res.send 201
   return
 
 exports.index = (req, res) ->
-  TimeManager.find {}, (err, doc)->
+  TimeManagerRecords.find {}, (err, doc)->
     res.json doc
     return
   return
